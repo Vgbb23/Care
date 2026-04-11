@@ -1,0 +1,7 @@
+# Credenciais Fruitfy (nunca versionar)
+js/fruitfy-config.js
+fruitfy.secrets.json
+
+# Ambiente local
+.env.local
+.env*.local

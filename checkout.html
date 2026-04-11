@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/zenci-params.js"></script>
+  <script>
+    window.pixelId = "69d5bdd6392bb94a4385b785";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+  <title>Checkout — Zencial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    :root {
+      --purple-deep: #5a4491;
+      --purple-mid: #8b6bd6;
+      --purple-light: #ede7fa;
+      --purple-border: #d5c9f2;
+      --text: #2f2f36;
+      --muted: #65606f;
+      --white: #fff;
+      --success: #1a7f37;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #faf8ff 0%, #f3effb 100%);
+      min-height: 100vh;
+    }
+
+    .checkout-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--purple-border);
+      padding: 16px 24px;
+      text-align: center;
+    }
+
+    .checkout-header img {
+      height: 40px;
+      width: auto;
+    }
+
+    .checkout-header a {
+      color: var(--purple-deep);
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--purple-deep);
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    @media (min-width: 900px) {
+      .grid { grid-template-columns: 1fr 360px; align-items: start; }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--purple-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 8px 28px rgba(90, 68, 145, 0.08);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--purple-deep);
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--purple-light);
+    }
+
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .checkout-block {
+      background: var(--white);
+      border: 1px solid var(--purple-border);
+      border-radius: 16px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 4px 22px rgba(90, 68, 145, 0.07);
+    }
+
+    .checkout-block__head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--purple-light);
+    }
+
+    .checkout-block__step {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ede7fa, #e0d6f7);
+      border: 1px solid var(--purple-border);
+      color: var(--purple-deep);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkout-block__titles {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .checkout-block__titles h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--purple-deep);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .checkout-block__titles p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .checkout-block__body .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .checkout-block--actions {
+      background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+      border-color: #c9b8ea;
+    }
+
+    .checkout-block--actions .btn-primary {
+      margin-top: 0;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--purple-border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--purple-mid);
+      box-shadow: 0 0 0 3px rgba(139, 107, 214, 0.2);
+    }
+
+    .row-2 {
+      display: grid;
+      gap: 12px;
+    }
+
+    @media (min-width: 520px) {
+      .row-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .cep-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .cep-loading { font-size: 12px; color: var(--purple-mid); margin-top: 4px; }
+    .cep-error { font-size: 12px; color: #b3261e; margin-top: 4px; }
+    .field-error { font-size: 12px; color: #b3261e; margin-top: 6px; }
+
+    .shipping-block {
+      display: none;
+    }
+
+    .shipping-block.is-visible {
+      display: block;
+    }
+
+    .ship-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border: 2px solid var(--purple-border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: var(--purple-light);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .ship-option:hover { border-color: var(--purple-mid); }
+
+    .ship-option input {
+      margin-top: 3px;
+      accent-color: var(--purple-mid);
+    }
+
+    .ship-option.is-checked {
+      border-color: var(--purple-deep);
+      background: var(--white);
+    }
+
+    .ship-option strong { display: block; font-size: 15px; }
+    .ship-option span { font-size: 13px; color: var(--muted); }
+
+    .checkout-block__body .ship-option:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .pay-pix {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      border: 2px solid var(--purple-deep);
+      border-radius: 14px;
+      background: var(--purple-light);
+    }
+
+    .pay-pix input { width: 20px; height: 20px; accent-color: var(--purple-deep); }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, #6841e3, #8b6bd6);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary:hover { filter: brightness(1.05); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .summary-product {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .summary-product img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--purple-border);
+    }
+
+    .summary-product h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+
+    .summary-product p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    .summary-lines { font-size: 14px; }
+    .summary-lines div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--purple-deep);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 2px solid var(--purple-light);
+    }
+
+    .pix-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(40, 32, 58, 0.55);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .pix-modal.is-open { display: flex; }
+
+    .pix-modal__inner {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 420px;
+      width: 100%;
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid var(--purple-border);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+    }
+
+    .pix-modal__inner h2 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      color: var(--purple-deep);
+    }
+
+    .pix-modal__inner .instr {
+      text-align: left;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 16px 0;
+      padding: 14px;
+      background: var(--purple-light);
+      border-radius: 12px;
+    }
+
+    #pix-qrcode {
+      margin: 16px auto;
+      padding: 12px;
+      background: var(--white);
+      border: 1px solid var(--purple-border);
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    #pix-qrcode canvas { display: block; }
+
+    .pix-copy-wrap {
+      margin-top: 12px;
+    }
+
+    .pix-copy-wrap label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: left;
+      margin-bottom: 6px;
+    }
+
+    textarea#pix-copy {
+      width: 100%;
+      min-height: 88px;
+      padding: 10px;
+      font-size: 11px;
+      font-family: ui-monospace, monospace;
+      border: 1px solid var(--purple-border);
+      border-radius: 10px;
+      resize: vertical;
+    }
+
+    .btn-copy {
+      margin-top: 10px;
+      width: 100%;
+      padding: 12px;
+      font-weight: 600;
+      border: 2px solid var(--purple-deep);
+      background: var(--white);
+      color: var(--purple-deep);
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-copy:hover { background: var(--purple-light); }
+
+    .btn-close-modal {
+      margin-top: 16px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .pix-modal-error {
+      margin: 0 0 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #7f1d1d;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .pix-modal__inner.is-loading {
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="checkout-header">
+    <a href="index.html" aria-label="Voltar à loja">
+      <img src="images/Cor_1_Roxo_Medio.png" alt="Zencial" width="170" height="42">
+    </a>
+    <div><a href="index.html">← Voltar ao produto</a></div>
+  </header>
+
+  <div class="wrap">
+    <h1>Finalizar pedido</h1>
+
+    <div class="grid">
+      <div>
+        <form id="checkout-form" class="form-stack" novalidate>
+          <section class="checkout-block" aria-labelledby="block-dados-title">
+            <div class="checkout-block__head">
+              <span class="checkout-block__step" aria-hidden="true">1</span>
+              <div class="checkout-block__titles">
+                <h2 id="block-dados-title">Seus dados</h2>
+                <p>Informações para contato e confirmação do pedido.</p>
+              </div>
+            </div>
+            <div class="checkout-block__body">
+              <div class="field">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" required autocomplete="name" placeholder="Como no documento">
+              </div>
+              <div class="field">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf" required inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000.000.000-00">
+                <div id="cpf-error" class="field-error" hidden>Informe um CPF válido.</div>
+              </div>
+              <div class="row-2">
+                <div class="field">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" required autocomplete="email" placeholder="seu@email.com">
+                </div>
+                <div class="field">
+                  <label for="telefone">Telefone / WhatsApp</label>
+                  <input type="tel" id="telefone" name="telefone" required autocomplete="tel" maxlength="15" inputmode="numeric" placeholder="(11) 99999-9999">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="checkout-block" aria-labelledby="block-endereco-title">
+            <div class="checkout-block__head">
+              <span class="checkout-block__step" aria-hidden="true">2</span>
+              <div class="checkout-block__titles">
+                <h2 id="block-endereco-title">Endereço de entrega</h2>
+                <p>Informe o CEP e complete o que faltar. A busca é feita pelo ViaCEP.</p>
+              </div>
+            </div>
+            <div class="checkout-block__body">
+              <div class="field">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep" required inputmode="numeric" maxlength="9" placeholder="00000-000" autocomplete="postal-code">
+                <div class="cep-hint">Ao sair do campo, buscamos o endereço automaticamente (ViaCEP).</div>
+                <div id="cep-status" class="cep-loading" hidden></div>
+              </div>
+              <div class="row-2">
+                <div class="field" style="grid-column: 1 / -1;">
+                  <label for="logradouro">Rua / Avenida</label>
+                  <input type="text" id="logradouro" name="logradouro" required autocomplete="street-address" placeholder="Nome da rua">
+                </div>
+              </div>
+              <div class="row-2">
+                <div class="field">
+                  <label for="numero">Número</label>
+                  <input type="text" id="numero" name="numero" required placeholder="123">
+                </div>
+                <div class="field">
+                  <label for="complemento">Complemento</label>
+                  <input type="text" id="complemento" name="complemento" autocomplete="address-line2" placeholder="Apto, bloco (opcional)">
+                </div>
+              </div>
+              <div class="row-2">
+                <div class="field">
+                  <label for="bairro">Bairro</label>
+                  <input type="text" id="bairro" name="bairro" required placeholder="Bairro">
+                </div>
+                <div class="field">
+                  <label for="cidade">Cidade</label>
+                  <input type="text" id="cidade" name="cidade" required autocomplete="address-level2" placeholder="Cidade">
+                </div>
+              </div>
+              <div class="field" style="max-width: 120px;">
+                <label for="uf">UF</label>
+                <input type="text" id="uf" name="uf" required maxlength="2" autocomplete="address-level1" placeholder="SP" style="text-transform: uppercase;">
+              </div>
+            </div>
+          </section>
+
+          <section id="shipping-block" class="checkout-block shipping-block" aria-labelledby="block-frete-title">
+            <div class="checkout-block__head">
+              <span class="checkout-block__step" aria-hidden="true">3</span>
+              <div class="checkout-block__titles">
+                <h2 id="block-frete-title">Frete</h2>
+                <p>Escolha como deseja receber — liberado após um CEP válido.</p>
+              </div>
+            </div>
+            <div class="checkout-block__body">
+              <label class="ship-option is-checked">
+                <input type="radio" name="frete" value="economico" checked>
+                <div>
+                  <strong>Econômico — Grátis</strong>
+                  <span>Entrega em 7 a 10 dias úteis</span>
+                </div>
+              </label>
+              <label class="ship-option">
+                <input type="radio" name="frete" value="sedex">
+                <div>
+                  <strong>SEDEX — R$ 19,53</strong>
+                  <span>Entrega em 2 a 3 dias úteis</span>
+                </div>
+              </label>
+            </div>
+          </section>
+
+          <section class="checkout-block" aria-labelledby="block-pagamento-title">
+            <div class="checkout-block__head">
+              <span class="checkout-block__step" aria-hidden="true">4</span>
+              <div class="checkout-block__titles">
+                <h2 id="block-pagamento-title">Pagamento</h2>
+                <p>Pagamento exclusivo via PIX nesta demonstração.</p>
+              </div>
+            </div>
+            <div class="checkout-block__body">
+              <div class="pay-pix">
+                <input type="radio" name="pagamento" value="pix" id="pay-pix" checked disabled>
+                <div>
+                  <strong style="font-size: 15px;">PIX</strong>
+                  <span style="font-size: 13px; color: var(--muted); display: block;">Aprovação em minutos após o pagamento.</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="checkout-block checkout-block--actions" aria-label="Finalizar pedido">
+            <button type="submit" class="btn-primary" id="btn-finalizar">Finalizar compra</button>
+          </section>
+        </form>
+      </div>
+
+      <aside class="card" id="summary-card">
+        <h2>Resumo do pedido</h2>
+        <div id="summary-empty" hidden>
+          <p style="color: var(--muted); font-size: 14px;">Nenhum item selecionado. <a href="index.html">Voltar ao produto</a> e escolha uma oferta.</p>
+        </div>
+        <div id="summary-content">
+          <div class="summary-product">
+            <img id="sum-img" src="images/Retinol-fundo-cor.png" alt="">
+            <div>
+              <h3 id="sum-title">Produto</h3>
+              <p id="sum-offer">—</p>
+            </div>
+          </div>
+          <div class="summary-lines">
+            <div><span>Subtotal</span><span id="sum-sub">R$ 0,00</span></div>
+            <div><span>Frete</span><span id="sum-ship">Grátis</span></div>
+          </div>
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="sum-total">R$ 0,00</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="pix-modal" class="pix-modal" role="dialog" aria-modal="true" aria-labelledby="pix-modal-title">
+    <div class="pix-modal__inner" id="pix-modal-inner">
+      <h2 id="pix-modal-title">Pague com PIX</h2>
+      <p id="pix-modal-lead" style="margin: 0; font-size: 14px; color: var(--muted);">Escaneie o QR Code ou copie o código abaixo.</p>
+      <p id="pix-modal-error" class="pix-modal-error" hidden></p>
+      <div id="pix-qrcode"></div>
+      <div class="instr">
+        <strong>Como pagar:</strong>
+        <ol style="margin: 8px 0 0 18px; padding: 0;">
+          <li>Abra o app do seu banco e escolha pagar com PIX (QR Code ou Pix Copia e Cola).</li>
+          <li>Confira o valor exibido antes de confirmar.</li>
+          <li>Após o pagamento, você receberá a confirmação por e-mail (em ambiente real).</li>
+        </ol>
+      </div>
+      <div class="pix-copy-wrap">
+        <label for="pix-copy">Pix Copia e Cola</label>
+        <textarea id="pix-copy" readonly></textarea>
+        <button type="button" class="btn-copy" id="btn-copy-pix">Copiar código PIX</button>
+      </div>
+      <button type="button" class="btn-close-modal" id="btn-close-pix">Fechar</button>
+    </div>
+  </div>
+
+  <script src="js/fruitfy-config.js"></script>
+  <script>
+    (function () {
+      var SEDEX = 19.53;
+      var order = null;
+
+      try {
+        var raw = sessionStorage.getItem('zenciCheckout');
+        if (raw) order = JSON.parse(raw);
+      } catch (e) {}
+
+      var sumEmpty = document.getElementById('summary-empty');
+      var sumContent = document.getElementById('summary-content');
+      var sumSub = document.getElementById('sum-sub');
+      var sumShip = document.getElementById('sum-ship');
+      var sumTotal = document.getElementById('sum-total');
+      var sumTitle = document.getElementById('sum-title');
+      var sumOffer = document.getElementById('sum-offer');
+      var sumImg = document.getElementById('sum-img');
+
+      function formatBRL(n) {
+        return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      }
+
+      function getSubtotal() {
+        if (!order || !order.quantity) return 0;
+        if (typeof order.kitTotal === 'number' && !isNaN(order.kitTotal) && order.kitTotal >= 0) {
+          return order.kitTotal;
+        }
+        if (typeof order.lineTotal === 'number' && !isNaN(order.lineTotal) && order.lineTotal >= 0) {
+          return order.lineTotal;
+        }
+        if (order.unitPrice != null && !isNaN(Number(order.unitPrice))) {
+          return order.quantity * Number(order.unitPrice);
+        }
+        return 0;
+      }
+
+      function getZenciTrackingForApi() {
+        if (typeof window.zenciParamsRefresh === 'function') window.zenciParamsRefresh();
+        if (typeof window.getZenciAttribution !== 'function') return {};
+        var o = window.getZenciAttribution();
+        if (!o || typeof o !== 'object' || Array.isArray(o)) return {};
+        return o;
+      }
+
+      function getShippingCost() {
+        var el = document.querySelector('input[name="frete"]:checked');
+        if (!el) return 0;
+        return el.value === 'sedex' ? SEDEX : 0;
+      }
+
+      function updateSummary() {
+        if (!order) {
+          sumEmpty.hidden = false;
+          sumContent.hidden = true;
+          return;
+        }
+        sumEmpty.hidden = true;
+        sumContent.hidden = false;
+        sumTitle.textContent = order.productTitle || 'Produto';
+        sumOffer.textContent = order.offerTitle || '';
+        if (order.image) sumImg.src = order.image;
+        var sub = getSubtotal();
+        var ship = getShippingCost();
+        sumSub.textContent = formatBRL(sub);
+        sumShip.textContent = ship === 0 ? 'Grátis' : formatBRL(ship);
+        sumTotal.textContent = formatBRL(sub + ship);
+      }
+
+      var btnFinalizar = document.getElementById('btn-finalizar');
+
+      if (order) {
+        updateSummary();
+      } else {
+        sumEmpty.hidden = false;
+        sumContent.hidden = true;
+        if (btnFinalizar) btnFinalizar.disabled = true;
+      }
+
+      var cpfInput = document.getElementById('cpf');
+      var cpfError = document.getElementById('cpf-error');
+
+      function setCpfError(show, message) {
+        if (!cpfError || !cpfInput) return;
+        if (show) {
+          cpfError.textContent = message || 'Informe um CPF válido.';
+          cpfError.hidden = false;
+          cpfInput.setAttribute('aria-invalid', 'true');
+        } else {
+          cpfError.hidden = true;
+          cpfInput.removeAttribute('aria-invalid');
+        }
+      }
+
+      function onlyDigits(s) {
+        return String(s || '').replace(/\D/g, '');
+      }
+
+      /**
+       * Reformata máscara (CPF, CEP, telefone) mantendo o cursor estável ao inserir antes de . ou -.
+       */
+      function maskDigitsKeepCaret(input, buildMaskedFromDigits) {
+        var el = input;
+        var oldVal = el.value;
+        var caret = el.selectionStart != null ? el.selectionStart : oldVal.length;
+        var digitsBefore = onlyDigits(oldVal.slice(0, caret)).length;
+        var newVal = buildMaskedFromDigits(onlyDigits(oldVal));
+        el.value = newVal;
+        var pos;
+        if (digitsBefore <= 0) {
+          pos = 0;
+        } else {
+          var i;
+          var d = 0;
+          pos = newVal.length;
+          for (i = 0; i < newVal.length; i++) {
+            if (/\d/.test(newVal.charAt(i))) {
+              d++;
+              if (d === digitsBefore) {
+                pos = i + 1;
+                break;
+              }
+            }
+          }
+        }
+        requestAnimationFrame(function () {
+          try {
+            el.setSelectionRange(pos, pos);
+          } catch (err) {}
+        });
+      }
+
+      function formatCpfFromDigits(d) {
+        d = d.slice(0, 11);
+        if (d.length <= 3) return d;
+        if (d.length <= 6) return d.slice(0, 3) + '.' + d.slice(3);
+        if (d.length <= 9) return d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6);
+        return d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6, 9) + '-' + d.slice(9);
+      }
+
+      function isValidCpf(str) {
+        var d = onlyDigits(str);
+        if (d.length !== 11) return false;
+        if (/^(\d)\1{10}$/.test(d)) return false;
+        var i;
+        var sum = 0;
+        for (i = 0; i < 9; i++) sum += parseInt(d.charAt(i), 10) * (10 - i);
+        var r = (sum * 10) % 11;
+        if (r === 10 || r === 11) r = 0;
+        if (r !== parseInt(d.charAt(9), 10)) return false;
+        sum = 0;
+        for (i = 0; i < 10; i++) sum += parseInt(d.charAt(i), 10) * (11 - i);
+        r = (sum * 10) % 11;
+        if (r === 10 || r === 11) r = 0;
+        return r === parseInt(d.charAt(10), 10);
+      }
+
+      if (cpfInput) {
+        cpfInput.addEventListener('input', function () {
+          maskDigitsKeepCaret(cpfInput, formatCpfFromDigits);
+          if (onlyDigits(cpfInput.value).length === 11) {
+            setCpfError(!isValidCpf(cpfInput.value), 'Informe um CPF válido.');
+          } else {
+            setCpfError(false);
+          }
+        });
+        cpfInput.addEventListener('blur', function () {
+          var digits = onlyDigits(cpfInput.value);
+          if (digits.length === 0) {
+            setCpfError(false);
+            return;
+          }
+          if (digits.length !== 11 || !isValidCpf(cpfInput.value)) {
+            setCpfError(true, 'Informe um CPF válido.');
+          } else {
+            setCpfError(false);
+          }
+        });
+      }
+
+      var cepInput = document.getElementById('cep');
+      var cepStatus = document.getElementById('cep-status');
+      var shippingBlock = document.getElementById('shipping-block');
+      var logradouro = document.getElementById('logradouro');
+      var bairro = document.getElementById('bairro');
+      var cidade = document.getElementById('cidade');
+      var uf = document.getElementById('uf');
+      var telInput = document.getElementById('telefone');
+      var numInput = document.getElementById('numero');
+
+      function formatCepFromDigits(d) {
+        d = d.slice(0, 8);
+        if (d.length > 5) return d.slice(0, 5) + '-' + d.slice(5);
+        return d;
+      }
+
+      function formatPhoneFromDigits(d) {
+        d = d.slice(0, 11);
+        if (d.length === 0) return '';
+        if (d.length <= 2) return '(' + d;
+        if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+        if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+        return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+      }
+
+      cepInput.addEventListener('input', function () {
+        maskDigitsKeepCaret(cepInput, formatCepFromDigits);
+      });
+
+      if (telInput) {
+        telInput.addEventListener('input', function () {
+          maskDigitsKeepCaret(telInput, formatPhoneFromDigits);
+        });
+      }
+
+      if (uf) {
+        uf.addEventListener('input', function () {
+          var c = uf.selectionStart != null ? uf.selectionStart : uf.value.length;
+          var t = uf.value.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 2);
+          uf.value = t;
+          var np = Math.min(c, t.length);
+          requestAnimationFrame(function () {
+            try {
+              uf.setSelectionRange(np, np);
+            } catch (e) {}
+          });
+        });
+      }
+
+      if (numInput) {
+        numInput.addEventListener('input', function () {
+          maskDigitsKeepCaret(numInput, function (d) {
+            return d.slice(0, 9);
+          });
+        });
+      }
+
+      var cepTimer = null;
+      function fetchCep() {
+        var digits = onlyDigits(cepInput.value);
+        cepStatus.hidden = false;
+        if (digits.length !== 8) {
+          cepStatus.className = 'cep-error';
+          cepStatus.textContent = 'Informe um CEP com 8 dígitos.';
+          shippingBlock.classList.remove('is-visible');
+          return;
+        }
+        cepStatus.className = 'cep-loading';
+        cepStatus.textContent = 'Buscando CEP…';
+        fetch('https://viacep.com.br/ws/' + digits + '/json/')
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.erro) throw new Error('CEP não encontrado');
+            logradouro.value = data.logradouro || '';
+            bairro.value = data.bairro || '';
+            cidade.value = data.localidade || '';
+            uf.value = (data.uf || '').toUpperCase();
+            cepStatus.className = 'cep-hint';
+            cepStatus.textContent = 'Endereço encontrado. Complete número e complemento se precisar.';
+            shippingBlock.classList.add('is-visible');
+            updateSummary();
+          })
+          .catch(function () {
+            cepStatus.className = 'cep-error';
+            cepStatus.textContent = 'Não foi possível localizar este CEP. Verifique e tente de novo.';
+            shippingBlock.classList.remove('is-visible');
+          });
+      }
+
+      cepInput.addEventListener('blur', function () {
+        clearTimeout(cepTimer);
+        cepTimer = setTimeout(fetchCep, 200);
+      });
+
+      document.querySelectorAll('.ship-option').forEach(function (label) {
+        var input = label.querySelector('input');
+        if (!input) return;
+        function sync() {
+          document.querySelectorAll('.ship-option').forEach(function (l) {
+            l.classList.toggle('is-checked', l.querySelector('input').checked);
+          });
+          updateSummary();
+        }
+        input.addEventListener('change', sync);
+        label.addEventListener('click', function (e) {
+          if (e.target !== input) {
+            input.checked = true;
+            sync();
+          }
+        });
+      });
+
+      function normalizePhoneBR(phone) {
+        var d = onlyDigits(phone);
+        if (!d.length) return d;
+        if (d.length >= 12 && d.slice(0, 2) === '55') return d;
+        if (d.length === 10 || d.length === 11) return '55' + d;
+        return d;
+      }
+
+      function extractPixFromResponse(root) {
+        var brCode = null;
+        var qrB64 = null;
+        var qrUrl = null;
+        function visit(node, depth) {
+          if (node == null || depth > 18) return;
+          var t = typeof node;
+          if (t === 'string') {
+            var s = node.trim();
+            if (s.length >= 50 && s.indexOf('000201') === 0) brCode = brCode || s;
+            return;
+          }
+          if (t !== 'object') return;
+          if (Array.isArray(node)) {
+            for (var i = 0; i < node.length; i++) visit(node[i], depth + 1);
+            return;
+          }
+          for (var k in node) {
+            if (!Object.prototype.hasOwnProperty.call(node, k)) continue;
+            var v = node[k];
+            var kl = k.toLowerCase();
+            if (typeof v === 'string') {
+              var vs = v.trim();
+              if (vs.length >= 50 && vs.indexOf('000201') === 0) brCode = brCode || vs;
+              if (
+                (kl.indexOf('qrcode') >= 0 || kl.indexOf('qr_code') >= 0 || kl.indexOf('picture') >= 0 || kl.indexOf('image') >= 0) &&
+                kl.indexOf('url') < 0 &&
+                vs.length > 100 &&
+                /^[A-Za-z0-9+/=\r\n]+$/.test(vs.replace(/\r|\n/g, ''))
+              ) {
+                qrB64 = qrB64 || vs.replace(/\r|\n/g, '');
+              }
+              if ((kl.indexOf('url') >= 0 || kl.indexOf('link') >= 0) && vs.indexOf('http') === 0 && (kl.indexOf('qr') >= 0 || kl.indexOf('pix') >= 0)) {
+                qrUrl = qrUrl || vs;
+              }
+            }
+            visit(v, depth + 1);
+          }
+        }
+        visit(root, 0);
+        return { brCode: brCode, qrB64: qrB64, qrUrl: qrUrl };
+      }
+
+      function renderPixQr(container, brCode, qrB64, qrUrl) {
+        container.innerHTML = '';
+        if (qrB64) {
+          var raw = qrB64.replace(/^data:image\/\w+;base64,/, '');
+          var img = document.createElement('img');
+          img.src = qrB64.indexOf('data:') === 0 ? qrB64 : 'data:image/png;base64,' + raw;
+          img.alt = 'QR Code PIX';
+          img.width = 220;
+          img.height = 220;
+          img.style.display = 'block';
+          img.style.margin = '0 auto';
+          container.appendChild(img);
+          return;
+        }
+        if (qrUrl) {
+          var img2 = document.createElement('img');
+          img2.src = qrUrl;
+          img2.alt = 'QR Code PIX';
+          img2.width = 220;
+          img2.referrerPolicy = 'no-referrer';
+          img2.style.display = 'block';
+          img2.style.margin = '0 auto';
+          container.appendChild(img2);
+          return;
+        }
+        if (brCode && typeof QRCode !== 'undefined') {
+          QRCode.toCanvas(brCode, { width: 220, margin: 2, color: { dark: '#2f2f36', light: '#ffffff' } }, function (err, canvas) {
+            if (!err && canvas) container.appendChild(canvas);
+          });
+        }
+      }
+
+      var form = document.getElementById('checkout-form');
+      var pixModal = document.getElementById('pix-modal');
+      var pixModalInner = document.getElementById('pix-modal-inner');
+      var pixModalError = document.getElementById('pix-modal-error');
+      var pixModalLead = document.getElementById('pix-modal-lead');
+      var pixTextarea = document.getElementById('pix-copy');
+      var pixQr = document.getElementById('pix-qrcode');
+      var pixStatusTimer = null;
+      var paidRedirectUrl = 'https://rastreiogummy.netlify.app/';
+
+      function buildPaidRedirectUrlWithTracking(baseUrl) {
+        try {
+          var target = new URL(baseUrl, window.location.href);
+          var current = new URLSearchParams(window.location.search || '');
+          current.forEach(function (value, key) {
+            if (value != null && value !== '') target.searchParams.set(key, value);
+          });
+          var stored = typeof window.getZenciAttribution === 'function' ? window.getZenciAttribution() : {};
+          if (stored && typeof stored === 'object') {
+            Object.keys(stored).forEach(function (key) {
+              var value = stored[key];
+              if (value != null && value !== '') target.searchParams.set(key, String(value));
+            });
+          }
+          return target.toString();
+        } catch (e) {
+          return baseUrl;
+        }
+      }
+
+      function setPixModalError(msg) {
+        if (!pixModalError) return;
+        if (msg) {
+          pixModalError.textContent = msg;
+          pixModalError.hidden = false;
+        } else {
+          pixModalError.textContent = '';
+          pixModalError.hidden = true;
+        }
+      }
+
+      function resetPixModalForNewCharge() {
+        if (pixStatusTimer) {
+          clearInterval(pixStatusTimer);
+          pixStatusTimer = null;
+        }
+        setPixModalError('');
+        pixTextarea.value = '';
+        pixQr.innerHTML = '';
+        if (pixModalLead) pixModalLead.hidden = false;
+        document.getElementById('btn-copy-pix').closest('.pix-copy-wrap').style.display = '';
+        document.querySelector('.pix-modal__inner .instr').style.display = '';
+      }
+
+      function collectChargeRefs(node) {
+        var refs = {};
+        function walk(v, depth) {
+          if (v == null || depth > 12) return;
+          if (typeof v !== 'object') return;
+          if (Array.isArray(v)) {
+            for (var i = 0; i < v.length; i++) walk(v[i], depth + 1);
+            return;
+          }
+          for (var k in v) {
+            if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
+            var val = v[k];
+            var key = String(k).toLowerCase();
+            if (typeof val === 'string' || typeof val === 'number') {
+              var s = String(val).trim();
+              if (!s) continue;
+              if (!refs.chargeId && (key === 'id' || key === 'chargeid' || key === 'charge_id' || key === 'paymentid' || key === 'payment_id')) refs.chargeId = s;
+              if (!refs.txid && key === 'txid') refs.txid = s;
+              if (!refs.transactionId && (key === 'transactionid' || key === 'transaction_id')) refs.transactionId = s;
+              if (!refs.externalId && (key === 'externalid' || key === 'external_id')) refs.externalId = s;
+              if (!refs.reference && (key === 'reference' || key === 'referenceid' || key === 'reference_id')) refs.reference = s;
+            }
+            walk(val, depth + 1);
+          }
+        }
+        walk(node, 0);
+        return refs;
+      }
+
+      function isPaidStatus(node) {
+        var paid = false;
+        function walk(v, depth) {
+          if (paid || v == null || depth > 10) return;
+          if (typeof v === 'string') {
+            var s = v.toLowerCase();
+            if (s === 'paid' || s === 'approved' || s === 'completed' || s === 'pago' || s === 'aprovado') paid = true;
+            return;
+          }
+          if (typeof v !== 'object') return;
+          if (Array.isArray(v)) {
+            for (var i = 0; i < v.length; i++) walk(v[i], depth + 1);
+            return;
+          }
+          for (var k in v) {
+            if (!Object.prototype.hasOwnProperty.call(v, k)) continue;
+            var key = String(k).toLowerCase();
+            var val = v[k];
+            if ((key === 'status' || key === 'paymentstatus' || key === 'payment_status') && (typeof val === 'string' || typeof val === 'number')) {
+              var s2 = String(val).toLowerCase();
+              if (s2 === 'paid' || s2 === 'approved' || s2 === 'completed' || s2 === 'pago' || s2 === 'aprovado') {
+                paid = true;
+                return;
+              }
+            }
+            walk(val, depth + 1);
+          }
+        }
+        walk(node, 0);
+        return paid;
+      }
+
+      function startPixStatusPolling(refs, cfg) {
+        if (pixStatusTimer) clearInterval(pixStatusTimer);
+        function resolveStatusUrl() {
+          var p = '/api/fruitfy/pix-status';
+          var explicit = cfg && cfg.fruitfyProxyOrigin;
+          if (explicit && typeof explicit === 'string' && explicit.replace(/\s/g, '').length > 0) return explicit.replace(/\/$/, '') + p;
+          if (cfg && cfg.fruitfyProxySameOrigin !== false) return window.location.origin + p;
+          var proxyPort = String((cfg && cfg.fruitfyProxyPort) || 3847);
+          return 'http://127.0.0.1:' + proxyPort + p;
+        }
+        var statusUrl = resolveStatusUrl();
+        pixStatusTimer = setInterval(function () {
+          fetch(statusUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(refs || {})
+          })
+            .then(function (r) { return r.text().then(function (t) { try { return JSON.parse(t); } catch (e) { return null; } }); })
+            .then(function (j) {
+              if (!j) return;
+              if (isPaidStatus(j)) {
+                clearInterval(pixStatusTimer);
+                pixStatusTimer = null;
+                window.location.href = buildPaidRedirectUrlWithTracking(paidRedirectUrl);
+              }
+            })
+            .catch(function () {});
+        }, 200);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!order) {
+          alert('Nenhum produto no pedido. Volte à página do produto e escolha uma oferta.');
+          return;
+        }
+        if (!shippingBlock.classList.contains('is-visible')) {
+          alert('Informe um CEP válido para liberar as opções de frete.');
+          cepInput.focus();
+          return;
+        }
+        if (!form.reportValidity()) return;
+        if (cpfInput && !isValidCpf(cpfInput.value)) {
+          setCpfError(true, 'Informe um CPF válido.');
+          cpfInput.focus();
+          return;
+        }
+        setCpfError(false);
+
+        var cfg = typeof window.FRUITFY_CONFIG !== 'undefined' ? window.FRUITFY_CONFIG : null;
+        var host = window.location.hostname || '';
+        var isLocal =
+          host === 'localhost' ||
+          host === '127.0.0.1' ||
+          host === '[::1]';
+        var proxyPath = null;
+        if (cfg && typeof cfg.proxyPath === 'string' && cfg.proxyPath.length > 0) {
+          proxyPath = cfg.proxyPath;
+        } else if (cfg && cfg.useFruitfyProxy !== false && isLocal) {
+          proxyPath = '/api/fruitfy/pix-charge';
+        }
+        var useProxy = !!proxyPath;
+
+        if (!useProxy && (!cfg || !cfg.token || !cfg.storeId || !cfg.productId)) {
+          alert('Configure js/fruitfy-config.js ou use o servidor local: rode node server.mjs (porta 3847), crie fruitfy.secrets.json e alinhe fruitfyProxyPort com a porta do terminal.');
+          return;
+        }
+
+        var sub = getSubtotal();
+        var ship = getShippingCost();
+        var total = sub + ship;
+        var totalCents = Math.round(total * 100);
+        if (totalCents < 100) {
+          alert('Valor total inválido.');
+          return;
+        }
+
+        var nomeEl = document.getElementById('nome');
+        var emailEl = document.getElementById('email');
+        var telEl = document.getElementById('telefone');
+
+        function resolveFruitfyProxyUrl() {
+          if (!proxyPath) return proxyPath;
+          if (proxyPath.indexOf('http') === 0) return proxyPath;
+          var explicit = cfg && cfg.fruitfyProxyOrigin;
+          if (explicit && typeof explicit === 'string' && explicit.replace(/\s/g, '').length > 0) {
+            return explicit.replace(/\/$/, '') + proxyPath;
+          }
+          if (!isLocal) return proxyPath;
+          // Mesma origem = mesma porta da página (3847, 3848, … — sempre bate no Node certo)
+          if (cfg.fruitfyProxySameOrigin !== false) {
+            return window.location.origin + proxyPath;
+          }
+          var proxyPort = String((cfg && cfg.fruitfyProxyPort) || 3847);
+          var pagePort = String(window.location.port || (location.protocol === 'https:' ? '443' : '80'));
+          if ((host === 'localhost' || host === '127.0.0.1' || host === '[::1]') && pagePort === proxyPort) {
+            return proxyPath;
+          }
+          return 'http://127.0.0.1:' + proxyPort + proxyPath;
+        }
+
+        var url;
+        var headers;
+        var body;
+        if (useProxy) {
+          url = resolveFruitfyProxyUrl();
+          body = {
+            name: nomeEl.value.trim(),
+            email: emailEl.value.trim(),
+            phone: normalizePhoneBR(telEl.value),
+            cpf: onlyDigits(cpfInput.value),
+            totalCents: totalCents,
+            trackingParams: getZenciTrackingForApi()
+          };
+          headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          };
+        } else {
+          var apiBase = (cfg.apiBase || 'https://api.fruitfy.io').replace(/\/$/, '');
+          var chargePath = cfg.chargePath || '/api/pix/charge';
+          url = apiBase + chargePath;
+          var trackDirect = getZenciTrackingForApi();
+          body = {
+            name: nomeEl.value.trim(),
+            email: emailEl.value.trim(),
+            phone: normalizePhoneBR(telEl.value),
+            cpf: onlyDigits(cpfInput.value),
+            items: [
+              {
+                id: cfg.productId,
+                quantity: 1,
+                value: totalCents
+              }
+            ],
+            trackingParams: trackDirect
+          };
+          if (Object.keys(trackDirect).length) {
+            body.metadata = trackDirect;
+            for (var tk in trackDirect) {
+              if (!Object.prototype.hasOwnProperty.call(trackDirect, tk)) continue;
+              if (/^utm_/i.test(tk) || tk === 'fbclid' || tk === 'gclid' || tk === 'src' || tk === 'ref') {
+                body[tk] = trackDirect[tk];
+              }
+            }
+          }
+          headers = {
+            'Authorization': 'Bearer ' + cfg.token,
+            'Store-Id': cfg.storeId,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Accept-Language': 'pt_BR'
+          };
+        }
+
+        var btnLabel = btnFinalizar.textContent;
+        btnFinalizar.disabled = true;
+        btnFinalizar.textContent = 'Gerando PIX…';
+        pixModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        resetPixModalForNewCharge();
+        if (pixModalInner) pixModalInner.classList.add('is-loading');
+        setPixModalError('');
+
+        fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(body)
+        })
+          .then(function (res) {
+            return res.text().then(function (text) {
+              var json = null;
+              try {
+                json = text ? JSON.parse(text) : null;
+              } catch (err) {
+                json = null;
+              }
+              return { ok: res.ok, status: res.status, json: json, raw: text };
+            });
+          })
+          .then(function (result) {
+            btnFinalizar.disabled = false;
+            btnFinalizar.textContent = btnLabel;
+            if (pixModalInner) pixModalInner.classList.remove('is-loading');
+
+            var payload = result.json;
+            if (!result.ok || !payload) {
+              var errMsg = 'Não foi possível criar a cobrança PIX.';
+              if (payload && payload.message) errMsg = payload.message;
+              else if (!result.ok) errMsg += ' (HTTP ' + result.status + ')';
+              if (result.status === 0 || (result.raw && result.raw.indexOf('Failed to fetch') >= 0)) {
+                errMsg = 'Erro de rede ou CORS. Na pasta do projeto: node server.mjs (porta padrão 3847), fruitfy.secrets.json na raiz, e fruitfyProxyPort igual à porta exibida no terminal.';
+              }
+              if (result.status === 404 && useProxy) {
+                var pp = (cfg && cfg.fruitfyProxyPort) || 3847;
+                errMsg =
+                  'HTTP 404: nada atendeu POST /api/fruitfy/pix-charge nesta porta. Causa comum: a porta 5173 é do Vite — use o proxy Zenci na 3847. Rode na pasta do projeto: node server.mjs (veja a porta no terminal), defina fruitfyProxyPort: ' +
+                  pp +
+                  ' em js/fruitfy-config.js e abra no navegador http://127.0.0.1:' +
+                  pp +
+                  '/api/fruitfy/health — deve aparecer JSON {"ok":true,...}. Se não aparecer, o server.mjs não está rodando nessa porta.';
+              }
+              if (result.status === 503 && payload && payload.message) {
+                errMsg = payload.message;
+              }
+              setPixModalError(errMsg);
+              pixQr.innerHTML = '';
+              pixTextarea.value = '';
+              if (pixModalLead) pixModalLead.hidden = true;
+              document.getElementById('btn-copy-pix').closest('.pix-copy-wrap').style.display = 'none';
+              document.querySelector('.pix-modal__inner .instr').style.display = 'none';
+              return;
+            }
+
+            if (payload.success === false) {
+              setPixModalError(payload.message || 'Erro na API Fruitfy.');
+              return;
+            }
+
+            var dataRoot = payload.data !== undefined ? payload.data : payload;
+            var extracted = extractPixFromResponse(dataRoot);
+            var brCode = extracted.brCode;
+            if (!brCode && typeof dataRoot === 'object' && dataRoot) {
+              extracted = extractPixFromResponse(payload);
+              brCode = extracted.brCode;
+            }
+
+            if (!brCode && !extracted.qrB64 && !extracted.qrUrl) {
+              setPixModalError('A API respondeu, mas não encontramos o código PIX nem a imagem do QR na resposta. Abra o console (F12) e confira o JSON retornado.');
+              console.warn('[Fruitfy] Resposta:', payload);
+              return;
+            }
+
+            if (brCode) pixTextarea.value = brCode;
+            renderPixQr(pixQr, brCode, extracted.qrB64, extracted.qrUrl);
+            startPixStatusPolling(collectChargeRefs(payload), cfg || {});
+          })
+          .catch(function (err) {
+            btnFinalizar.disabled = false;
+            btnFinalizar.textContent = btnLabel;
+            if (pixModalInner) pixModalInner.classList.remove('is-loading');
+            setPixModalError('Falha na requisição: ' + (err && err.message ? err.message : 'tente de novo.'));
+            console.error(err);
+          });
+      });
+
+      document.getElementById('btn-copy-pix').addEventListener('click', function () {
+        var btn = document.getElementById('btn-copy-pix');
+        var t = btn.textContent;
+        var text = pixTextarea.value;
+        function done() {
+          btn.textContent = 'Copiado!';
+          setTimeout(function () { btn.textContent = t; }, 2000);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () {
+            pixTextarea.select();
+            document.execCommand('copy');
+            done();
+          });
+        } else {
+          pixTextarea.select();
+          document.execCommand('copy');
+          done();
+        }
+      });
+
+      document.getElementById('btn-close-pix').addEventListener('click', function () {
+        if (pixStatusTimer) {
+          clearInterval(pixStatusTimer);
+          pixStatusTimer = null;
+        }
+        pixModal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+
+      pixModal.addEventListener('click', function (e) {
+        if (e.target === pixModal) {
+          if (pixStatusTimer) {
+            clearInterval(pixStatusTimer);
+            pixStatusTimer = null;
+          }
+          pixModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

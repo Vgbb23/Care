@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node: server.mjs (proxy + site)",
+      "program": "${workspaceFolder}/server.mjs",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome: checkout (porta 3847)",
+      "url": "http://127.0.0.1:3847/checkout.html",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome: loja index (porta 3847)",
+      "url": "http://127.0.0.1:3847/index.html",
+      "webRoot": "${workspaceFolder}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Servidor + Chrome checkout",
+      "configurations": ["Node: server.mjs (proxy + site)", "Chrome: checkout (porta 3847)"],
+      "stopAll": true
+    }
+  ]
+}
